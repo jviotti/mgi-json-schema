@@ -1,15 +1,25 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "includedInDataCatalog",
-    "definitions": {"includedInDataCatalog": {
-        "type": "array",
-        "title": "Included In Data Catalogs",
-        "uniqueItems": true,
-        "items": {
-            "type": "string",
-            "title": "Included In Data Catalog",
-            "cordra": {"type": {"handleReference": {"types": ["DataCatalog"]}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "includedInDataCatalog",
+  "type": "object",
+  "definitions": {
+    "includedInDataCatalog": {
+      "title": "Included In Data Catalogs",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Included In Data Catalog",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "DataCatalog"
+              ]
+            }
+          }
         }
-    }}
+      }
+    }
+  }
 }

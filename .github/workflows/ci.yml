@@ -1,0 +1,10 @@
+name: JSON schema
+on: [ push ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: intelligence-ai/jsonschema@v0.5.0
+      - run: jsonschema fmt --check --verbose
+      - run: jsonschema lint --verbose

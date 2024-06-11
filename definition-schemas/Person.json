@@ -1,59 +1,79 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "Person",
-    "definitions": {"Person": {
-        "type": "object",
-        "properties": {
-            "familyName": {
-                "type": "string",
-                "title": "Family Name"
-            },
-            "givenName": {
-                "type": "string",
-                "title": "Given Name"
-            },
-            "additionalName": {
-                "type": "string",
-                "title": "Middle Name(s)"
-            },
-            "email": {
-                "type": "string",
-                "title": "E-Mail Address",
-                "cordra": {"preview": {
-                    "showInPreview": true
-                }}
-            },
-            "telephone": {
-                "type": "string",
-                "title": "Telephone"
-            },
-            "address": {
-                "type": "string",
-                "title": "Physical Address",
-                "format": "textarea"
-            },
-            "affiliation": {
-                "type": "array",
-                "title": "Affiliations",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Affiliation",
-                    "cordra": {"type": {"handleReference": {"types": ["Organization"]}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Person",
+  "type": "object",
+  "definitions": {
+    "Person": {
+      "type": "object",
+      "properties": {
+        "additionalName": {
+          "title": "Middle Name(s)",
+          "type": "string"
+        },
+        "address": {
+          "title": "Physical Address",
+          "type": "string",
+          "format": "textarea"
+        },
+        "affiliation": {
+          "title": "Affiliations",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Affiliation",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Organization"
+                  ]
                 }
-            },
-            "workLocation": {
-                "type": "array",
-                "title": "Work Location",
-                "description": "A location where a person performs work (e.g., office, laboratory).",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Place",
-                    "cordra": {"type": {"handleReference": {"types": ["Place"]}}}
-                }
+              }
             }
+          }
+        },
+        "email": {
+          "title": "E-Mail Address",
+          "type": "string",
+          "cordra": {
+            "preview": {
+              "showInPreview": true
+            }
+          }
+        },
+        "familyName": {
+          "title": "Family Name",
+          "type": "string"
+        },
+        "givenName": {
+          "title": "Given Name",
+          "type": "string"
+        },
+        "telephone": {
+          "title": "Telephone",
+          "type": "string"
+        },
+        "workLocation": {
+          "title": "Work Location",
+          "description": "A location where a person performs work (e.g., office, laboratory).",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Place",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Place"
+                  ]
+                }
+              }
+            }
+          }
         }
-    }}
+      }
+    }
+  }
 }

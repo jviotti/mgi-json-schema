@@ -1,39 +1,59 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "SoftwareSourceCode",
-    "definitions": {"SoftwareSourceCode": {
-        "type": "object",
-        "properties": {
-            "codeRepository": {
-                "type": "string",
-                "title": "Code Repository URL"
-            },
-            "programmingLanguage": {
-                "type": "string",
-                "title": "Programming Language"
-            },
-            "targetProduct": {
-                "type": "array",
-                "title": "Software Applications",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Software Application",
-                    "cordra": {"type": {"handleReference": {"types": ["SoftwareApplication"]}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "SoftwareSourceCode",
+  "type": "object",
+  "definitions": {
+    "SoftwareSourceCode": {
+      "type": "object",
+      "properties": {
+        "codeRepository": {
+          "title": "Code Repository URL",
+          "type": "string"
+        },
+        "isBasedOn": {
+          "$ref": "datasetLinked.json#/definitions/isBasedOn"
+        },
+        "isPartOf": {
+          "title": "Is Part Of",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Is Part Of",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Collection"
+                  ]
                 }
-            },
-            "isPartOf": {
-                "type": "array",
-                "title": "Is Part Of",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Is Part Of",
-                    "cordra": {"type": {"handleReference": {"types": ["Collection"]}}}
+              }
+            }
+          }
+        },
+        "programmingLanguage": {
+          "title": "Programming Language",
+          "type": "string"
+        },
+        "targetProduct": {
+          "title": "Software Applications",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Software Application",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "SoftwareApplication"
+                  ]
                 }
-            },
-            "isBasedOn": {"$ref": "datasetLinked.json#/definitions/isBasedOn"}
+              }
+            }
+          }
         }
-    }}
+      }
+    }
+  }
 }

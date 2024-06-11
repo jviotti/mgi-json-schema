@@ -1,48 +1,48 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "TabularData",
-    "description": "This schema is for depositing and describing tabular data in Cordra. This schema leverages the Frictionless Data Table Schema.",
-    "required": [
-        "@id",
-        "@context",
-        "@type"
-    ],
-    "allOf": [
-        {
-            "@context": {
-                "type": "array",
-                "default": [
-                    "http://schema.org/",
-                    {
-                        "mat": "https://pages.nist.gov/material-schema/",
-                        "parameterControlled": "mat:parameterControlled",
-                        "@vocab": "https://pages.nist.gov/material-schema/user-defined/"
-                    }
-                ]
-            },
-            "@type": {
-                "type": "array",
-                "default": [
-                    "Dataset",
-                    "mat:TabularData"
-                ]
-            }
-        },
-        {
-            "$ref": "definition-schemas/CordraObjectID.json#/definitions/CordraObjectID"
-        },
-        {
-            "$ref": "definition-schemas/Thing.json#/definitions/Thing"
-        },
-        {
-            "$ref": "definition-schemas/CreativeWork.json#/definitions/CreativeWork"
-        },
-        {
-            "$ref": "definition-schemas/File.json#/definitions/File"
-        },
-        {
-            "$ref": "definition-schemas/TabularData.json#/definitions/TabularData"
-        }
-    ]
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "TabularData",
+  "description": "This schema is for depositing and describing tabular data in Cordra. This schema leverages the Frictionless Data Table Schema.",
+  "type": "object",
+  "allOf": [
+    {
+      "@context": {
+        "default": [
+          "http://schema.org/",
+          {
+            "@vocab": "https://pages.nist.gov/material-schema/user-defined/",
+            "mat": "https://pages.nist.gov/material-schema/",
+            "parameterControlled": "mat:parameterControlled"
+          }
+        ],
+        "type": "array"
+      },
+      "@type": {
+        "default": [
+          "Dataset",
+          "mat:TabularData"
+        ],
+        "type": "array"
+      }
+    },
+    {
+      "$ref": "definition-schemas/CordraObjectID.json#/definitions/CordraObjectID"
+    },
+    {
+      "$ref": "definition-schemas/Thing.json#/definitions/Thing"
+    },
+    {
+      "$ref": "definition-schemas/CreativeWork.json#/definitions/CreativeWork"
+    },
+    {
+      "$ref": "definition-schemas/File.json#/definitions/File"
+    },
+    {
+      "$ref": "definition-schemas/TabularData.json#/definitions/TabularData"
+    }
+  ],
+  "required": [
+    "@id",
+    "@context",
+    "@type"
+  ]
 }

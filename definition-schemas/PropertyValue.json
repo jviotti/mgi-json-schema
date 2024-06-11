@@ -1,137 +1,191 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "PropertyValue",
-    "definitions": {"PropertyValue": {
-        "type": "object",
-        "properties": {
-            "@type": {
-                "type": "string",
-                "default": "PropertyValue"
-            },
-            "name": {
-                "type": "string",
-                "title": "Name"
-            },
-            "propertyID": {
-                "title": "Property IDs",
-                "type": "array",
-                "uniqueItems": true,
-                "items": {
-                    "title": "Property ID",
-                    "type": "string",
-                    "cordra": {"type": {"handleReference": {"types": ["DefinedTerm"]}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PropertyValue",
+  "type": "object",
+  "definitions": {
+    "PropertyValue": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "default": "PropertyValue",
+          "type": "string"
+        },
+        "conditionObserved": {
+          "title": "Conditions Observed (nested)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Condition Observed",
+            "$ref": "#/definitions/PropertyValue"
+          }
+        },
+        "maxValue": {
+          "title": "Maximum Value"
+        },
+        "minValue": {
+          "title": "Minimum Value"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "parameterControlled": {
+          "title": "Parameters Controlled (nested)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Parameter Controlled",
+            "$ref": "#/definitions/PropertyValue"
+          }
+        },
+        "propertyID": {
+          "title": "Property IDs",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Property ID",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "DefinedTerm"
+                  ]
                 }
-            },
-            "value": {
-                "title": "Value"
-            },
-            "minValue": {
-                "title": "Minimum Value"
-            },
-            "maxValue": {
-                "title": "Maximum Value"
-            },
-            "uncertainty": {
-                "title": "Uncertainty"
-            },
-            "valueID": {
-                "title": "Value IDs",
-                "type": "array",
-                "description": "A commonly used identifier for the value represented by the property. This can be used when the value of the property is a DefinedTerm.",
-                "uniqueItems": true,
-                "items": {
-                    "title": "Value ID",
-                    "type": "string",
-                    "cordra": {"type": {"handleReference": {"types": ["DefinedTerm"]}}}
-                }
-            },
-            "unitText": {
-                "title": "Unit Text",
-                "oneOf": [
-                    {"type": "string"},
-                    {"type": "null"}
+              }
+            }
+          }
+        },
+        "uncertainty": {
+          "title": "Uncertainty"
+        },
+        "unitCode": {
+          "title": "Unit Code",
+          "type": "string",
+          "cordra": {
+            "type": {
+              "handleReference": {
+                "types": [
+                  "UnitOfMeasurement"
                 ]
+              }
+            }
+          }
+        },
+        "unitText": {
+          "title": "Unit Text",
+          "oneOf": [
+            {
+              "type": "string"
             },
-            "unitCode": {
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value": {
+          "title": "Value"
+        },
+        "valueID": {
+          "title": "Value IDs",
+          "description": "A commonly used identifier for the value represented by the property. This can be used when the value of the property is a DefinedTerm.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Value ID",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "DefinedTerm"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "valueReference": {
+          "title": "Reference Values",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Reference Value",
+            "type": "object",
+            "properties": {
+              "@type": {
+                "default": "PropertyValue",
+                "type": "string"
+              },
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "propertyID": {
+                "title": "Property ID/Name",
+                "type": "string",
+                "cordra": {
+                  "type": {
+                    "handleReference": {
+                      "types": [
+                        "DefinedTerm"
+                      ]
+                    }
+                  }
+                }
+              },
+              "unitCode": {
                 "title": "Unit Code",
                 "type": "string",
-                "cordra": {"type": {"handleReference": {"types": ["UnitOfMeasurement"]}}}
-            },
-            "valueReference": {
-                "type": "array",
-                "title": "Reference Values",
-                "uniqueItems": true,
-                "items": {
-                    "type": "object",
-                    "title": "Reference Value",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue"
-                        },
-                        "name": {
-                            "type": "string",
-                            "title": "Name"
-                        },
-                        "propertyID": {
-                            "title": "Property ID/Name",
-                            "type": "string",
-                            "cordra": {"type": {"handleReference": {"types": ["DefinedTerm"]}}}
-                        },
-                        "value": {
-                            "title": "Value"
-                        },
-                        "valueID": {
-                            "title": "Value IDs",
-                            "type": "array",
-                            "description": "A commonly used identifier for the value represented by the property. This can be used when the value of the property is a DefinedTerm.",
-                            "uniqueItems": true,
-                            "items": {
-                                "title": "Value ID",
-                                "type": "string",
-                                "cordra": {"type": {"handleReference": {"types": ["DefinedTerm"]}}}
-                            }
-                        },
-                        "unitText": {
-                            "title": "Unit Text",
-                            "type": "string"
-                        },
-                        "unitCode": {
-                            "title": "Unit Code",
-                            "type": "string",
-                            "cordra": {"type": {"handleReference": {"types": ["UnitOfMeasurement"]}}}
-                        }
+                "cordra": {
+                  "type": {
+                    "handleReference": {
+                      "types": [
+                        "UnitOfMeasurement"
+                      ]
                     }
+                  }
                 }
-            },
-            "variableMeasured": {
+              },
+              "unitText": {
+                "title": "Unit Text",
+                "type": "string"
+              },
+              "value": {
+                "title": "Value"
+              },
+              "valueID": {
+                "title": "Value IDs",
+                "description": "A commonly used identifier for the value represented by the property. This can be used when the value of the property is a DefinedTerm.",
                 "type": "array",
-                "title": "Variables Measured (nested)",
                 "uniqueItems": true,
                 "items": {
-                    "title": "Complex/Multidimensional Quantity",
-                    "$ref": "#/definitions/PropertyValue"
+                  "title": "Value ID",
+                  "type": "string",
+                  "cordra": {
+                    "type": {
+                      "handleReference": {
+                        "types": [
+                          "DefinedTerm"
+                        ]
+                      }
+                    }
+                  }
                 }
-            },
-            "parameterControlled": {
-                "type": "array",
-                "title": "Parameters Controlled (nested)",
-                "uniqueItems": true,
-                "items": {
-                    "title": "Parameter Controlled",
-                    "$ref": "#/definitions/PropertyValue"
-                }
-            },
-            "conditionObserved": {
-                "type": "array",
-                "title": "Conditions Observed (nested)",
-                "uniqueItems": true,
-                "items": {
-                    "title": "Condition Observed",
-                    "$ref": "#/definitions/PropertyValue"
-                }
+              }
             }
+          }
+        },
+        "variableMeasured": {
+          "title": "Variables Measured (nested)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Complex/Multidimensional Quantity",
+            "$ref": "#/definitions/PropertyValue"
+          }
         }
-    }}
+      }
+    }
+  }
 }

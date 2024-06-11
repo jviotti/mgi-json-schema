@@ -1,20 +1,28 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "measurementTechnique",
-    "definitions": {"measurementTechnique": {
-        "type": "array",
-        "title": "Synthesis/Measurement/Computational Technique or Instrument/Software Used",
-        "uniqueItems": true,
-        "items": {
-            "type": "string",
-            "title": "Referenced Item",
-            "cordra": {"type": {"handleReference": {"types": [
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "measurementTechnique",
+  "type": "object",
+  "definitions": {
+    "measurementTechnique": {
+      "title": "Synthesis/Measurement/Computational Technique or Instrument/Software Used",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Referenced Item",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
                 "DefinedTerm",
                 "Instrument",
                 "SoftwareApplication",
                 "SoftwareSourceCode"
-            ]}}}
+              ]
+            }
+          }
         }
-    }}
+      }
+    }
+  }
 }

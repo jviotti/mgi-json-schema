@@ -1,30 +1,46 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "Collection",
-    "definitions": {"Collection": {
-        "type": "object",
-        "properties": {
-            "hasPart": {
-                "type": "array",
-                "title": "Has Collection Items",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Has Collection Item",
-                    "cordra": {"type": {"handleReference": {"types": []}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Collection",
+  "type": "object",
+  "definitions": {
+    "Collection": {
+      "type": "object",
+      "properties": {
+        "hasPart": {
+          "title": "Has Collection Items",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Has Collection Item",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": []
                 }
-            },
-            "isPartOf": {
-                "type": "array",
-                "title": "Is Part Of",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Is Part Of",
-                    "cordra": {"type": {"handleReference": {"types": ["Collection"]}}}
-                }
+              }
             }
+          }
+        },
+        "isPartOf": {
+          "title": "Is Part Of",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Is Part Of",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Collection"
+                  ]
+                }
+              }
+            }
+          }
         }
-    }}
+      }
+    }
+  }
 }

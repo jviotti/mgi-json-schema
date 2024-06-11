@@ -1,23 +1,35 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "CordraGroup",
-    "definitions": {"CordraGroup": {
-        "type": "object",
-        "properties": {"users": {
-            "type": "array",
-            "format": "table",
-            "title": "Users",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "User",
-                "cordra": {"type": {"handleReference": {"types": [
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CordraGroup",
+  "type": "object",
+  "definitions": {
+    "CordraGroup": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "title": "Users",
+          "type": "array",
+          "format": "table",
+          "uniqueItems": true,
+          "items": {
+            "title": "User",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
                     "User",
                     "Group"
-                ]}}}
-            },
-            "cordra": {"auth": "usersList"}
-        }}
-    }}
+                  ]
+                }
+              }
+            }
+          },
+          "cordra": {
+            "auth": "usersList"
+          }
+        }
+      }
+    }
+  }
 }

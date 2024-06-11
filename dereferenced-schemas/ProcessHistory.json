@@ -1,1118 +1,1118 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "ProcessHistory",
-    "description": "This schema is for describing the processing history of a material.",
-    "required": [
-        "@id",
-        "@context",
-        "@type"
-    ],
-    "definitions": {
-        "QuantitativeValue": {
-            "type": "object",
-            "properties": {
-                "@type": {
-                    "type": "string",
-                    "default": "QuantitativeValue"
-                },
-                "name": {
-                    "type": "string",
-                    "title": "Name"
-                },
-                "value": {
-                    "title": "Value"
-                },
-                "unitText": {
-                    "title": "Unit Text",
-                    "type": "string"
-                },
-                "unitCode": {
-                    "title": "Unit Code",
-                    "type": "string",
-                    "cordra": {
-                        "type": {
-                            "handleReference": {
-                                "types": [
-                                    "UnitOfMeasurement"
-                                ]
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "workExample": {
-            "type": "array",
-            "title": "Resulting Materials/Data",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Resulting Material/Data",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "Material",
-                                "Dataset",
-                                "File",
-                                "MaterialStructure",
-                                "MaterialProperty",
-                                "MaterialPerformance",
-                                "TabularData",
-                                "TabularDataPackage"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "supply": {
-            "type": "array",
-            "title": "Supply/Starting Materials",
-            "uniqueItems": true,
-            "items": {
-                "type": "object",
-                "title": "Supply/Starting Material",
-                "properties": {
-                    "@type": {
-                        "type": "array",
-                        "default": [
-                            "HowToSupply",
-                            "mat:Material"
-                        ]
-                    },
-                    "identifier": {
-                        "type": "string",
-                        "cordra": {
-                            "type": {
-                                "handleReference": {
-                                    "types": [
-                                        "Material"
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "name": {
-                        "type": "string",
-                        "title": "Name"
-                    },
-                    "requiredQuantity": {
-                        "$ref": "#/definitions/QuantitativeValue"
-                    }
-                }
-            }
-        },
-        "measurementTechnique": {
-            "type": "array",
-            "title": "Synthesis/Measurement/Computational Technique or Instrument/Software Used",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Referenced Item",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "DefinedTerm",
-                                "Instrument",
-                                "SoftwareApplication",
-                                "SoftwareSourceCode"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "PropertyValue": {
-            "type": "object",
-            "properties": {
-                "@type": {
-                    "type": "string",
-                    "default": "PropertyValue"
-                },
-                "name": {
-                    "type": "string",
-                    "title": "Name"
-                },
-                "propertyID": {
-                    "title": "Property IDs",
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Property ID",
-                        "type": "string",
-                        "cordra": {
-                            "type": {
-                                "handleReference": {
-                                    "types": [
-                                        "DefinedTerm"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "value": {
-                    "title": "Value"
-                },
-                "minValue": {
-                    "title": "Minimum Value"
-                },
-                "maxValue": {
-                    "title": "Maximum Value"
-                },
-                "uncertainty": {
-                    "title": "Uncertainty"
-                },
-                "valueID": {
-                    "title": "Value IDs",
-                    "type": "array",
-                    "description": "A commonly used identifier for the value represented by the property. This can be used when the value of the property is a DefinedTerm.",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Value ID",
-                        "type": "string",
-                        "cordra": {
-                            "type": {
-                                "handleReference": {
-                                    "types": [
-                                        "DefinedTerm"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "unitText": {
-                    "title": "Unit Text",
-                    "oneOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "unitCode": {
-                    "title": "Unit Code",
-                    "type": "string",
-                    "cordra": {
-                        "type": {
-                            "handleReference": {
-                                "types": [
-                                    "UnitOfMeasurement"
-                                ]
-                            }
-                        }
-                    }
-                },
-                "valueReference": {
-                    "type": "array",
-                    "title": "Reference Values",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "object",
-                        "title": "Reference Value",
-                        "properties": {
-                            "@type": {
-                                "type": "string",
-                                "default": "PropertyValue"
-                            },
-                            "name": {
-                                "type": "string",
-                                "title": "Name"
-                            },
-                            "propertyID": {
-                                "title": "Property ID/Name",
-                                "type": "string",
-                                "cordra": {
-                                    "type": {
-                                        "handleReference": {
-                                            "types": [
-                                                "DefinedTerm"
-                                            ]
-                                        }
-                                    }
-                                }
-                            },
-                            "value": {
-                                "title": "Value"
-                            },
-                            "valueID": {
-                                "title": "Value IDs",
-                                "type": "array",
-                                "description": "A commonly used identifier for the value represented by the property. This can be used when the value of the property is a DefinedTerm.",
-                                "uniqueItems": true,
-                                "items": {
-                                    "title": "Value ID",
-                                    "type": "string",
-                                    "cordra": {
-                                        "type": {
-                                            "handleReference": {
-                                                "types": [
-                                                    "DefinedTerm"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "unitText": {
-                                "title": "Unit Text",
-                                "type": "string"
-                            },
-                            "unitCode": {
-                                "title": "Unit Code",
-                                "type": "string",
-                                "cordra": {
-                                    "type": {
-                                        "handleReference": {
-                                            "types": [
-                                                "UnitOfMeasurement"
-                                            ]
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "variableMeasured": {
-                    "type": "array",
-                    "title": "Variables Measured (nested)",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Complex/Multidimensional Quantity",
-                        "$ref": "#/definitions/PropertyValue"
-                    }
-                },
-                "parameterControlled": {
-                    "type": "array",
-                    "title": "Parameters Controlled (nested)",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Parameter Controlled",
-                        "$ref": "#/definitions/PropertyValue"
-                    }
-                },
-                "conditionObserved": {
-                    "type": "array",
-                    "title": "Conditions Observed (nested)",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Condition Observed",
-                        "$ref": "#/definitions/PropertyValue"
-                    }
-                }
-            }
-        },
-        "Process": {
-            "type": "object",
-            "properties": {
-                "@type": {
-                    "type": "array",
-                    "default": [
-                        "HowToStep",
-                        "mat:Process"
-                    ]
-                },
-                "name": {
-                    "type": "string",
-                    "title": "Name",
-                    "cordra": {
-                        "preview": {
-                            "showInPreview": true,
-                            "isPrimary": true
-                        }
-                    }
-                },
-                "about": {
-                    "type": "array",
-                    "title": "About",
-                    "description": "The subject matter of this thing (e.g., DefinedTerm, Project, Material, Experiment, Study, etc.)",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Referenced Item",
-                        "cordra": {
-                            "type": {
-                                "handleReference": {
-                                    "types": []
-                                }
-                            }
-                        }
-                    }
-                },
-                "keywords": {
-                    "type": "array",
-                    "title": "Keywords",
-                    "description": "This is for user-defined terms.",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Keyword"
-                    }
-                },
-                "text": {
-                    "title": "Process/Step Text",
-                    "type": "string",
-                    "format": "textarea"
-                },
-                "isBasedOn": {
-                    "type": "array",
-                    "title": "Process is based on",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Process",
-                        "cordra": {
-                            "type": {
-                                "handleReference": {
-                                    "types": [
-                                        "ProcessProtocol",
-                                        "ProcessHistory"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "hasPart": {
-                    "type": "array",
-                    "title": "Subprocess",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Subprocess",
-                        "cordra": {
-                            "type": {
-                                "handleReference": {
-                                    "types": [
-                                        "ProcessProtocol",
-                                        "ProcessHistory"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "isPartOf": {
-                    "type": "array",
-                    "title": "Parent Process and Collections",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Parent Process or Collection",
-                        "cordra": {
-                            "type": {
-                                "handleReference": {
-                                    "types": [
-                                        "Collection",
-                                        "ProcessProtocol",
-                                        "ProcessHistory"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "supply": {
-                    "$ref": "#/definitions/supply"
-                },
-                "variableMeasured": {
-                    "type": "array",
-                    "title": "Variables Measured",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Variable Measured",
-                        "$ref": "#/definitions/PropertyValue"
-                    }
-                },
-                "parameterControlled": {
-                    "type": "array",
-                    "title": "Parameters Controlled",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Parameter Controlled",
-                        "$ref": "#/definitions/PropertyValue"
-                    }
-                },
-                "conditionObserved": {
-                    "type": "array",
-                    "title": "Conditions Observed",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Condition Observed",
-                        "$ref": "#/definitions/PropertyValue"
-                    }
-                },
-                "workExample": {
-                    "$ref": "#/definitions/workExample"
-                },
-                "measurementTechnique": {
-                    "$ref": "#/definitions/measurementTechnique"
-                },
-                "tool": {
-                    "type": "array",
-                    "title": "Tools used to perform the process",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Tools used to perform the process",
-                        "cordra": {
-                            "type": {
-                                "handleReference": {
-                                    "types": [
-                                        "DefinedTerm",
-                                        "Instrument",
-                                        "SoftwareApplication",
-                                        "SoftwareSourceCode"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "estimatedCost": {
-                    "type": "object",
-                    "title": "MonetaryAmount",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "MonetaryAmount"
-                        },
-                        "currency": {
-                            "type": "string"
-                        },
-                        "value": {
-                            "type": "number"
-                        }
-                    }
-                },
-                "performTime": {
-                    "type": "string"
-                },
-                "prepTime": {
-                    "type": "string"
-                },
-                "totalTime": {
-                    "type": "string"
-                },
-                "yield": {
-                    "$ref": "#/definitions/QuantitativeValue"
-                },
-                "position": {
-                    "title": "Step Number",
-                    "type": "number"
-                },
-                "image": {
-                    "type": "array",
-                    "title": "Image URLs",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Image URL"
-                    }
-                },
-                "thumbnailUrl": {
-                    "type": "array",
-                    "title": "Thumbnail URLs",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Thumbnail URL"
-                    }
-                },
-                "step": {
-                    "type": "array",
-                    "title": "Process Steps",
-                    "uniqueItems": true,
-                    "items": {
-                        "title": "Process Step",
-                        "$ref": "#/definitions/Process"
-                    }
-                }
-            }
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProcessHistory",
+  "description": "This schema is for describing the processing history of a material.",
+  "type": "object",
+  "required": [
+    "@id",
+    "@context",
+    "@type"
+  ],
+  "properties": {
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "format": "textarea",
+      "cordra": {
+        "preview": {
+          "showInPreview": true
         }
+      }
     },
-    "properties": {
-        "@context": {
-            "type": "array",
-            "default": [
-                "http://schema.org/",
-                {
-                    "mat": "https://pages.nist.gov/material-schema/",
-                    "measurementTechnique": "mat:measurementTechnique",
-                    "parameterControlled": "mat:parameterControlled",
-                    "variableMeasured": "mat:variableMeasured"
-                }
-            ]
-        },
+    "@context": {
+      "default": [
+        "http://schema.org/",
+        {
+          "mat": "https://pages.nist.gov/material-schema/",
+          "measurementTechnique": "mat:measurementTechnique",
+          "parameterControlled": "mat:parameterControlled",
+          "variableMeasured": "mat:variableMeasured"
+        }
+      ],
+      "type": "array"
+    },
+    "@id": {
+      "type": "string",
+      "cordra": {
+        "type": {
+          "autoGeneratedField": "handle"
+        }
+      }
+    },
+    "@type": {
+      "default": [
+        "HowTo",
+        "mat:ProcessHistory"
+      ],
+      "type": "array"
+    },
+    "about": {
+      "title": "About",
+      "description": "The subject matter of this thing (e.g., DefinedTerm, Project, Material, Experiment, Study, etc.)",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Referenced Item",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": []
+            }
+          }
+        }
+      }
+    },
+    "accountablePerson": {
+      "title": "Accountable Persons",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Accountable Person",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "alternateName": {
+      "title": "Alternate Name",
+      "type": "string",
+      "cordra": {
+        "preview": {
+          "showInPreview": true
+        }
+      }
+    },
+    "author": {
+      "title": "Authors",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Author",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person",
+                "Organization"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "citation": {
+      "title": "Citations",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Citation",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": []
+            }
+          }
+        }
+      }
+    },
+    "comment": {
+      "title": "Comments",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Comment",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "Comment"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "conditionObserved": {
+      "title": "Conditions Observed",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Condition Observed",
+        "$ref": "#/definitions/PropertyValue"
+      }
+    },
+    "contributor": {
+      "title": "Contributors",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Contributor",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person",
+                "Organization"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "copyrightHolder": {
+      "title": "Copyright Holders",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Copyright Holder",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person",
+                "Organization"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "creator": {
+      "title": "Creators",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Creator",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person",
+                "Organization"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "dateCreated": {
+      "title": "Date Created",
+      "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
+      "type": "string"
+    },
+    "dateModified": {
+      "title": "Date Modified",
+      "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
+      "type": "string"
+    },
+    "datePublished": {
+      "title": "Date Published",
+      "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
+      "type": "string"
+    },
+    "editor": {
+      "title": "Editors",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Editor",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "estimatedCost": {
+      "title": "MonetaryAmount",
+      "type": "object",
+      "properties": {
         "@type": {
-            "type": "array",
-            "default": [
-                "HowTo",
-                "mat:ProcessHistory"
-            ]
+          "default": "MonetaryAmount",
+          "type": "string"
         },
-        "@id": {
-            "type": "string",
-            "cordra": {
+        "currency": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      }
+    },
+    "funder": {
+      "title": "Funders",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Funder",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person",
+                "Organization"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "hasPart": {
+      "title": "Subprocess",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Subprocess",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "ProcessProtocol",
+                "ProcessHistory"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "identifier": {
+      "title": "Identifers",
+      "type": "array",
+      "items": {
+        "title": "Identifer",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "default": "PropertyValue",
+            "type": "string"
+          },
+          "name": {
+            "title": "Identifier Type/Name",
+            "type": "string"
+          },
+          "propertyID": {
+            "title": "Property IDs",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "title": "Property ID",
+              "type": "string",
+              "cordra": {
                 "type": {
-                    "autoGeneratedField": "handle"
+                  "handleReference": {
+                    "types": [
+                      "DefinedTerm"
+                    ]
+                  }
                 }
+              }
             }
-        },
-        "identifier": {
-            "type": "array",
-            "title": "Identifers",
-            "items": {
-                "type": "object",
-                "title": "Identifer",
-                "properties": {
-                    "@type": {
-                        "type": "string",
-                        "default": "PropertyValue"
-                    },
-                    "propertyID": {
-                        "title": "Property IDs",
-                        "type": "array",
-                        "uniqueItems": true,
-                        "items": {
-                            "title": "Property ID",
-                            "type": "string",
-                            "cordra": {
-                                "type": {
-                                    "handleReference": {
-                                        "types": [
-                                            "DefinedTerm"
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "name": {
-                        "title": "Identifier Type/Name",
-                        "type": "string"
-                    },
-                    "value": {
-                        "title": "Identifier Value"
-                    },
-                    "url": {
-                        "title": "Identifier URL",
-                        "type": "string"
-                    }
-                }
+          },
+          "url": {
+            "title": "Identifier URL",
+            "type": "string"
+          },
+          "value": {
+            "title": "Identifier Value"
+          }
+        }
+      }
+    },
+    "image": {
+      "title": "Image URLs",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Image URL",
+        "type": "string"
+      }
+    },
+    "isBasedOn": {
+      "title": "Process is based on",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Process",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "ProcessProtocol",
+                "ProcessHistory"
+              ]
             }
-        },
-        "name": {
-            "type": "string",
-            "title": "Name",
-            "cordra": {
-                "preview": {
-                    "showInPreview": true,
-                    "isPrimary": true
-                }
+          }
+        }
+      }
+    },
+    "isPartOf": {
+      "title": "Parent Process and Collections",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Parent Process or Collection",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "Collection",
+                "ProcessProtocol",
+                "ProcessHistory"
+              ]
             }
-        },
-        "alternateName": {
-            "type": "string",
-            "title": "Alternate Name",
-            "cordra": {
-                "preview": {
-                    "showInPreview": true
-                }
+          }
+        }
+      }
+    },
+    "keywords": {
+      "title": "Keywords",
+      "description": "This is for user-defined terms.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Keyword",
+        "type": "string"
+      }
+    },
+    "license": {
+      "title": "License",
+      "type": "string"
+    },
+    "measurementTechnique": {
+      "$ref": "#/definitions/measurementTechnique"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "cordra": {
+        "preview": {
+          "isPrimary": true,
+          "showInPreview": true
+        }
+      }
+    },
+    "parameterControlled": {
+      "title": "Parameters Controlled",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Parameter Controlled",
+        "$ref": "#/definitions/PropertyValue"
+      }
+    },
+    "performTime": {
+      "type": "string"
+    },
+    "position": {
+      "title": "Step Number",
+      "type": "number"
+    },
+    "prepTime": {
+      "type": "string"
+    },
+    "provider": {
+      "title": "Providers",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Provider",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person",
+                "Organization"
+              ]
             }
-        },
-        "description": {
-            "type": "string",
-            "title": "Description",
-            "format": "textarea",
-            "cordra": {
-                "preview": {
-                    "showInPreview": true
-                }
+          }
+        }
+      }
+    },
+    "publisher": {
+      "title": "Publishers",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Publisher",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "User",
+                "Person",
+                "Organization"
+              ]
             }
-        },
-        "url": {
-            "type": "string",
-            "title": "URL"
-        },
-        "image": {
-            "type": "array",
-            "title": "Image URLs",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Image URL"
+          }
+        }
+      }
+    },
+    "spatial": {
+      "title": "Specific Spatial Location",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Place",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "Place"
+              ]
             }
-        },
-        "subjectOf": {
-            "type": "array",
-            "title": "Subject Of",
-            "description": "A CreativeWork about this Thing (e.g., Linked Materials, Datasets, etc.)",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Referenced Item",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": []
-                        }
-                    }
-                }
+          }
+        }
+      }
+    },
+    "step": {
+      "title": "Process Steps",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Process Step",
+        "$ref": "#/definitions/Process"
+      }
+    },
+    "subjectOf": {
+      "title": "Subject Of",
+      "description": "A CreativeWork about this Thing (e.g., Linked Materials, Datasets, etc.)",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Referenced Item",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": []
             }
+          }
+        }
+      }
+    },
+    "supply": {
+      "$ref": "#/definitions/supply"
+    },
+    "text": {
+      "title": "Process/Step Text",
+      "type": "string",
+      "format": "textarea"
+    },
+    "thumbnailUrl": {
+      "title": "Thumbnail URLs",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Thumbnail URL",
+        "type": "string"
+      }
+    },
+    "tool": {
+      "title": "Tools used to perform the process",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Tools used to perform the process",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "DefinedTerm",
+                "Instrument",
+                "SoftwareApplication",
+                "SoftwareSourceCode"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "totalTime": {
+      "type": "string"
+    },
+    "url": {
+      "title": "URL",
+      "type": "string"
+    },
+    "variableMeasured": {
+      "title": "Variables Measured",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Variable Measured",
+        "$ref": "#/definitions/PropertyValue"
+      }
+    },
+    "workExample": {
+      "$ref": "#/definitions/workExample"
+    },
+    "yield": {
+      "$ref": "#/definitions/QuantitativeValue"
+    }
+  },
+  "definitions": {
+    "Process": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "default": [
+            "HowToStep",
+            "mat:Process"
+          ],
+          "type": "array"
         },
         "about": {
-            "type": "array",
-            "title": "About",
-            "description": "The subject matter of this thing (e.g., DefinedTerm, Project, Material, Experiment, Study, etc.)",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Referenced Item",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": []
-                        }
-                    }
-                }
-            }
-        },
-        "keywords": {
-            "type": "array",
-            "title": "Keywords",
-            "description": "This is for user-defined terms.",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Keyword"
-            }
-        },
-        "citation": {
-            "type": "array",
-            "title": "Citations",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Citation",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": []
-                        }
-                    }
-                }
-            }
-        },
-        "funder": {
-            "type": "array",
-            "title": "Funders",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Funder",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person",
-                                "Organization"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "accountablePerson": {
-            "type": "array",
-            "title": "Accountable Persons",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Accountable Person",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "author": {
-            "type": "array",
-            "title": "Authors",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Author",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person",
-                                "Organization"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "editor": {
-            "type": "array",
-            "title": "Editors",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Editor",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "creator": {
-            "type": "array",
-            "title": "Creators",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Creator",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person",
-                                "Organization"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "contributor": {
-            "type": "array",
-            "title": "Contributors",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Contributor",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person",
-                                "Organization"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "provider": {
-            "type": "array",
-            "title": "Providers",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Provider",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person",
-                                "Organization"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "publisher": {
-            "type": "array",
-            "title": "Publishers",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Publisher",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person",
-                                "Organization"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "copyrightHolder": {
-            "type": "array",
-            "title": "Copyright Holders",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Copyright Holder",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "User",
-                                "Person",
-                                "Organization"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "license": {
+          "title": "About",
+          "description": "The subject matter of this thing (e.g., DefinedTerm, Project, Material, Experiment, Study, etc.)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Referenced Item",
             "type": "string",
-            "title": "License"
-        },
-        "thumbnailUrl": {
-            "type": "array",
-            "title": "Thumbnail URLs",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Thumbnail URL"
-            }
-        },
-        "dateCreated": {
-            "title": "Date Created",
-            "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
-            "type": "string"
-        },
-        "dateModified": {
-            "title": "Date Modified",
-            "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
-            "type": "string"
-        },
-        "datePublished": {
-            "title": "Date Published",
-            "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
-            "type": "string"
-        },
-        "comment": {
-            "type": "array",
-            "title": "Comments",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Comment",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "Comment"
-                            ]
-                        }
-                    }
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": []
                 }
+              }
             }
-        },
-        "spatial": {
-            "type": "array",
-            "title": "Specific Spatial Location",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Place",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "Place"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "text": {
-            "title": "Process/Step Text",
-            "type": "string",
-            "format": "textarea"
-        },
-        "isBasedOn": {
-            "type": "array",
-            "title": "Process is based on",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Process",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "ProcessProtocol",
-                                "ProcessHistory"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "hasPart": {
-            "type": "array",
-            "title": "Subprocess",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Subprocess",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "ProcessProtocol",
-                                "ProcessHistory"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "isPartOf": {
-            "type": "array",
-            "title": "Parent Process and Collections",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Parent Process or Collection",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "Collection",
-                                "ProcessProtocol",
-                                "ProcessHistory"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "supply": {
-            "$ref": "#/definitions/supply"
-        },
-        "variableMeasured": {
-            "type": "array",
-            "title": "Variables Measured",
-            "uniqueItems": true,
-            "items": {
-                "title": "Variable Measured",
-                "$ref": "#/definitions/PropertyValue"
-            }
-        },
-        "parameterControlled": {
-            "type": "array",
-            "title": "Parameters Controlled",
-            "uniqueItems": true,
-            "items": {
-                "title": "Parameter Controlled",
-                "$ref": "#/definitions/PropertyValue"
-            }
+          }
         },
         "conditionObserved": {
-            "type": "array",
-            "title": "Conditions Observed",
-            "uniqueItems": true,
-            "items": {
-                "title": "Condition Observed",
-                "$ref": "#/definitions/PropertyValue"
-            }
-        },
-        "workExample": {
-            "$ref": "#/definitions/workExample"
-        },
-        "measurementTechnique": {
-            "$ref": "#/definitions/measurementTechnique"
-        },
-        "tool": {
-            "type": "array",
-            "title": "Tools used to perform the process",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Tools used to perform the process",
-                "cordra": {
-                    "type": {
-                        "handleReference": {
-                            "types": [
-                                "DefinedTerm",
-                                "Instrument",
-                                "SoftwareApplication",
-                                "SoftwareSourceCode"
-                            ]
-                        }
-                    }
-                }
-            }
+          "title": "Conditions Observed",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Condition Observed",
+            "$ref": "#/definitions/PropertyValue"
+          }
         },
         "estimatedCost": {
-            "type": "object",
-            "title": "MonetaryAmount",
-            "properties": {
-                "@type": {
-                    "type": "string",
-                    "default": "MonetaryAmount"
-                },
-                "currency": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "number"
-                }
+          "title": "MonetaryAmount",
+          "type": "object",
+          "properties": {
+            "@type": {
+              "default": "MonetaryAmount",
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "value": {
+              "type": "number"
             }
+          }
+        },
+        "hasPart": {
+          "title": "Subprocess",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Subprocess",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "ProcessProtocol",
+                    "ProcessHistory"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "image": {
+          "title": "Image URLs",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Image URL",
+            "type": "string"
+          }
+        },
+        "isBasedOn": {
+          "title": "Process is based on",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Process",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "ProcessProtocol",
+                    "ProcessHistory"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "isPartOf": {
+          "title": "Parent Process and Collections",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Parent Process or Collection",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Collection",
+                    "ProcessProtocol",
+                    "ProcessHistory"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "keywords": {
+          "title": "Keywords",
+          "description": "This is for user-defined terms.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Keyword",
+            "type": "string"
+          }
+        },
+        "measurementTechnique": {
+          "$ref": "#/definitions/measurementTechnique"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "cordra": {
+            "preview": {
+              "isPrimary": true,
+              "showInPreview": true
+            }
+          }
+        },
+        "parameterControlled": {
+          "title": "Parameters Controlled",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Parameter Controlled",
+            "$ref": "#/definitions/PropertyValue"
+          }
         },
         "performTime": {
-            "type": "string"
-        },
-        "prepTime": {
-            "type": "string"
-        },
-        "totalTime": {
-            "type": "string"
-        },
-        "yield": {
-            "$ref": "#/definitions/QuantitativeValue"
+          "type": "string"
         },
         "position": {
-            "title": "Step Number",
-            "type": "number"
+          "title": "Step Number",
+          "type": "number"
+        },
+        "prepTime": {
+          "type": "string"
         },
         "step": {
-            "type": "array",
-            "title": "Process Steps",
-            "uniqueItems": true,
-            "items": {
-                "title": "Process Step",
-                "$ref": "#/definitions/Process"
+          "title": "Process Steps",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Process Step",
+            "$ref": "#/definitions/Process"
+          }
+        },
+        "supply": {
+          "$ref": "#/definitions/supply"
+        },
+        "text": {
+          "title": "Process/Step Text",
+          "type": "string",
+          "format": "textarea"
+        },
+        "thumbnailUrl": {
+          "title": "Thumbnail URLs",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Thumbnail URL",
+            "type": "string"
+          }
+        },
+        "tool": {
+          "title": "Tools used to perform the process",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Tools used to perform the process",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "DefinedTerm",
+                    "Instrument",
+                    "SoftwareApplication",
+                    "SoftwareSourceCode"
+                  ]
+                }
+              }
             }
+          }
+        },
+        "totalTime": {
+          "type": "string"
+        },
+        "variableMeasured": {
+          "title": "Variables Measured",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Variable Measured",
+            "$ref": "#/definitions/PropertyValue"
+          }
+        },
+        "workExample": {
+          "$ref": "#/definitions/workExample"
+        },
+        "yield": {
+          "$ref": "#/definitions/QuantitativeValue"
         }
+      }
+    },
+    "PropertyValue": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "default": "PropertyValue",
+          "type": "string"
+        },
+        "conditionObserved": {
+          "title": "Conditions Observed (nested)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Condition Observed",
+            "$ref": "#/definitions/PropertyValue"
+          }
+        },
+        "maxValue": {
+          "title": "Maximum Value"
+        },
+        "minValue": {
+          "title": "Minimum Value"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "parameterControlled": {
+          "title": "Parameters Controlled (nested)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Parameter Controlled",
+            "$ref": "#/definitions/PropertyValue"
+          }
+        },
+        "propertyID": {
+          "title": "Property IDs",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Property ID",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "DefinedTerm"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "uncertainty": {
+          "title": "Uncertainty"
+        },
+        "unitCode": {
+          "title": "Unit Code",
+          "type": "string",
+          "cordra": {
+            "type": {
+              "handleReference": {
+                "types": [
+                  "UnitOfMeasurement"
+                ]
+              }
+            }
+          }
+        },
+        "unitText": {
+          "title": "Unit Text",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value": {
+          "title": "Value"
+        },
+        "valueID": {
+          "title": "Value IDs",
+          "description": "A commonly used identifier for the value represented by the property. This can be used when the value of the property is a DefinedTerm.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Value ID",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "DefinedTerm"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "valueReference": {
+          "title": "Reference Values",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Reference Value",
+            "type": "object",
+            "properties": {
+              "@type": {
+                "default": "PropertyValue",
+                "type": "string"
+              },
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "propertyID": {
+                "title": "Property ID/Name",
+                "type": "string",
+                "cordra": {
+                  "type": {
+                    "handleReference": {
+                      "types": [
+                        "DefinedTerm"
+                      ]
+                    }
+                  }
+                }
+              },
+              "unitCode": {
+                "title": "Unit Code",
+                "type": "string",
+                "cordra": {
+                  "type": {
+                    "handleReference": {
+                      "types": [
+                        "UnitOfMeasurement"
+                      ]
+                    }
+                  }
+                }
+              },
+              "unitText": {
+                "title": "Unit Text",
+                "type": "string"
+              },
+              "value": {
+                "title": "Value"
+              },
+              "valueID": {
+                "title": "Value IDs",
+                "description": "A commonly used identifier for the value represented by the property. This can be used when the value of the property is a DefinedTerm.",
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "title": "Value ID",
+                  "type": "string",
+                  "cordra": {
+                    "type": {
+                      "handleReference": {
+                        "types": [
+                          "DefinedTerm"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "variableMeasured": {
+          "title": "Variables Measured (nested)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Complex/Multidimensional Quantity",
+            "$ref": "#/definitions/PropertyValue"
+          }
+        }
+      }
+    },
+    "QuantitativeValue": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "default": "QuantitativeValue",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "unitCode": {
+          "title": "Unit Code",
+          "type": "string",
+          "cordra": {
+            "type": {
+              "handleReference": {
+                "types": [
+                  "UnitOfMeasurement"
+                ]
+              }
+            }
+          }
+        },
+        "unitText": {
+          "title": "Unit Text",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value"
+        }
+      }
+    },
+    "measurementTechnique": {
+      "title": "Synthesis/Measurement/Computational Technique or Instrument/Software Used",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Referenced Item",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "DefinedTerm",
+                "Instrument",
+                "SoftwareApplication",
+                "SoftwareSourceCode"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "supply": {
+      "title": "Supply/Starting Materials",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Supply/Starting Material",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "default": [
+              "HowToSupply",
+              "mat:Material"
+            ],
+            "type": "array"
+          },
+          "identifier": {
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Material"
+                  ]
+                }
+              }
+            }
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "requiredQuantity": {
+            "$ref": "#/definitions/QuantitativeValue"
+          }
+        }
+      }
+    },
+    "workExample": {
+      "title": "Resulting Materials/Data",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Resulting Material/Data",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "Material",
+                "Dataset",
+                "File",
+                "MaterialStructure",
+                "MaterialProperty",
+                "MaterialPerformance",
+                "TabularData",
+                "TabularDataPackage"
+              ]
+            }
+          }
+        }
+      }
     }
+  }
 }

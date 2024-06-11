@@ -1,24 +1,34 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "UnitOfMeasurement",
-    "definitions": {"UnitOfMeasurement": {
-        "type": "object",
-        "properties": {
-            "termCode": {
-                "type": "string",
-                "title": "Term Code"
-            },
-            "isPartOf": {
-                "type": "array",
-                "title": "Is Part Of",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Is Part Of",
-                    "cordra": {"type": {"handleReference": {"types": ["Collection"]}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "UnitOfMeasurement",
+  "type": "object",
+  "definitions": {
+    "UnitOfMeasurement": {
+      "type": "object",
+      "properties": {
+        "isPartOf": {
+          "title": "Is Part Of",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Is Part Of",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Collection"
+                  ]
                 }
+              }
             }
+          }
+        },
+        "termCode": {
+          "title": "Term Code",
+          "type": "string"
         }
-    }}
+      }
+    }
+  }
 }

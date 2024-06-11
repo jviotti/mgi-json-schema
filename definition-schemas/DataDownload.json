@@ -1,27 +1,37 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "DataDownload",
-    "definitions": {"DataDownload": {
-        "type": "object",
-        "title": "Distribution",
-        "properties": {
-            "@type": {
-                "type": "string",
-                "default": "DataDownload"
-            },
-            "contentUrl": {
-                "type": "string",
-                "title": "Content URL"
-            },
-            "encodingFormat": {
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "title": "Data Type",
-                    "cordra": {"type": {"handleReference": {"types": ["DataFormat"]}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DataDownload",
+  "type": "object",
+  "definitions": {
+    "DataDownload": {
+      "title": "Distribution",
+      "type": "object",
+      "properties": {
+        "@type": {
+          "default": "DataDownload",
+          "type": "string"
+        },
+        "contentUrl": {
+          "title": "Content URL",
+          "type": "string"
+        },
+        "encodingFormat": {
+          "type": "array",
+          "items": {
+            "title": "Data Type",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "DataFormat"
+                  ]
                 }
+              }
             }
+          }
         }
-    }}
+      }
+    }
+  }
 }

@@ -1,53 +1,71 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "Experiment",
-    "definitions": {"Experiment": {
-        "type": "object",
-        "properties": {
-            "variableMeasured": {
-                "type": "array",
-                "title": "Variables Measured",
-                "uniqueItems": true,
-                "items": {
-                    "title": "Variable Measured",
-                    "$ref": "PropertyValue.json#/definitions/PropertyValue"
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Experiment",
+  "type": "object",
+  "definitions": {
+    "Experiment": {
+      "type": "object",
+      "properties": {
+        "conditionObserved": {
+          "title": "Conditions Observed",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Condition Observed",
+            "$ref": "PropertyValue.json#/definitions/PropertyValue"
+          }
+        },
+        "hasPart": {
+          "title": "Has Parent Experiment",
+          "type": "array",
+          "items": {
+            "title": "Referenced Item",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Experiment"
+                  ]
                 }
-            },
-            "parameterControlled": {
-                "type": "array",
-                "title": "Parameters Controlled",
-                "uniqueItems": true,
-                "items": {
-                    "title": "Parameter Controlled",
-                    "$ref": "PropertyValue.json#/definitions/PropertyValue"
-                }
-            },
-            "conditionObserved": {
-                "type": "array",
-                "title": "Conditions Observed",
-                "uniqueItems": true,
-                "items": {
-                    "title": "Condition Observed",
-                    "$ref": "PropertyValue.json#/definitions/PropertyValue"
-                }
-            },
-            "isPartOf": {
-                "title": "Has Parent Experiment",
-                "type": "array",
-                "items": {
-                    "title": "Referenced Item",
-                    "cordra": {"type": {"handleReference": {"types": ["Experiment"]}}}
-                }
-            },
-            "hasPart": {
-                "title": "Has Parent Experiment",
-                "type": "array",
-                "items": {
-                    "title": "Referenced Item",
-                    "cordra": {"type": {"handleReference": {"types": ["Experiment"]}}}
-                }
+              }
             }
+          }
+        },
+        "isPartOf": {
+          "title": "Has Parent Experiment",
+          "type": "array",
+          "items": {
+            "title": "Referenced Item",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Experiment"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameterControlled": {
+          "title": "Parameters Controlled",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Parameter Controlled",
+            "$ref": "PropertyValue.json#/definitions/PropertyValue"
+          }
+        },
+        "variableMeasured": {
+          "title": "Variables Measured",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Variable Measured",
+            "$ref": "PropertyValue.json#/definitions/PropertyValue"
+          }
         }
-    }}
+      }
+    }
+  }
 }

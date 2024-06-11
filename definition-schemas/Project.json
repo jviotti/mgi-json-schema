@@ -1,112 +1,166 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "Project",
-    "definitions": {"Project": {
-        "type": "object",
-        "properties": {
-            "about": {
-                "type": "array",
-                "title": "Subjects",
-                "description": "This is for controlled vocabulary terms.",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Subject",
-                    "cordra": {"type": {"handleReference": {"types": ["DefinedTerm"]}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Project",
+  "type": "object",
+  "definitions": {
+    "Project": {
+      "type": "object",
+      "properties": {
+        "about": {
+          "title": "Subjects",
+          "description": "This is for controlled vocabulary terms.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Subject",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "DefinedTerm"
+                  ]
                 }
-            },
-            "keywords": {
-                "type": "array",
-                "title": "Keywords",
-                "description": "This is for user-defined terms.",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Keyword"
-                }
-            },
-            "foundingDate": {
-                "title": "Starting Date",
-                "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
-                "type": "string"
-            },
-            "dissolutionDate": {
-                "title": "Ending Date",
-                "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
-                "type": "string"
-            },
-            "contactPoint": {
-                "type": "array",
-                "title": "Contact Points",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Contact Point",
-                    "cordra": {"type": {"handleReference": {"types": [
-                        "Person",
-                        "User"
-                    ]}}}
-                }
-            },
-            "email": {
-                "type": "string",
-                "title": "E-Mail Address"
-            },
-            "subOrganization": {
-                "type": "array",
-                "title": "Child Projects",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Child Project",
-                    "cordra": {"type": {"handleReference": {"types": ["Project"]}}}
-                }
-            },
-            "parentOrganization": {
-                "type": "array",
-                "title": "Parent Projects",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Parent Project",
-                    "cordra": {"type": {"handleReference": {"types": ["Project"]}}}
-                }
-            },
-            "member": {
-                "type": "array",
-                "title": "Participating Organizations/Persons",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Participating Organization/Person",
-                    "cordra": {"type": {"handleReference": {"types": [
-                        "Organization",
-                        "User",
-                        "Person"
-                    ]}}}
-                }
-            },
-            "memberOf": {
-                "type": "array",
-                "title": "Host Organizations",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Host Organization",
-                    "cordra": {"type": {"handleReference": {"types": ["Organization"]}}}
-                }
-            },
-            "isPartOf": {
-                "type": "array",
-                "title": "Is Part Of",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string",
-                    "title": "Is Part Of",
-                    "cordra": {"type": {"handleReference": {"types": ["Collection"]}}}
-                }
+              }
             }
+          }
+        },
+        "contactPoint": {
+          "title": "Contact Points",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Contact Point",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Person",
+                    "User"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "dissolutionDate": {
+          "title": "Ending Date",
+          "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
+          "type": "string"
+        },
+        "email": {
+          "title": "E-Mail Address",
+          "type": "string"
+        },
+        "foundingDate": {
+          "title": "Starting Date",
+          "description": "A date value in ISO 8601 date format, e.g.: YYYY-MM-DD, YYYY-MM-DDThh:mm:ssTZD",
+          "type": "string"
+        },
+        "isPartOf": {
+          "title": "Is Part Of",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Is Part Of",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Collection"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "keywords": {
+          "title": "Keywords",
+          "description": "This is for user-defined terms.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Keyword",
+            "type": "string"
+          }
+        },
+        "member": {
+          "title": "Participating Organizations/Persons",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Participating Organization/Person",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Organization",
+                    "User",
+                    "Person"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "memberOf": {
+          "title": "Host Organizations",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Host Organization",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Organization"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parentOrganization": {
+          "title": "Parent Projects",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Parent Project",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Project"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "subOrganization": {
+          "title": "Child Projects",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Child Project",
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Project"
+                  ]
+                }
+              }
+            }
+          }
         }
-    }}
+      }
+    }
+  }
 }

@@ -1,79 +1,107 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "exampleOfWork",
-    "definitions": {
-        "exampleOfWork": {
-            "type": "array",
-            "title": "This Material/Data was created by/during this Process",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Processing History/Protocol",
-                "cordra": {"type": {"handleReference": {"types": [
-                    "ProcessHistory",
-                    "ProcessProtocol"
-                ]}}}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "exampleOfWork",
+  "type": "object",
+  "definitions": {
+    "exampleOfWork": {
+      "title": "This Material/Data was created by/during this Process",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Processing History/Protocol",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "ProcessHistory",
+                "ProcessProtocol"
+              ]
             }
-        },
-        "workExample": {
-            "type": "array",
-            "title": "Resulting Materials/Data",
-            "uniqueItems": true,
-            "items": {
-                "type": "string",
-                "title": "Resulting Material/Data",
-                "cordra": {"type": {"handleReference": {"types": [
-                    "Material",
-                    "Dataset",
-                    "File",
-                    "MaterialStructure",
-                    "MaterialProperty",
-                    "MaterialPerformance",
-                    "TabularData",
-                    "TabularDataPackage"
-                ]}}}
-            }
-        },
-        "supply": {
-            "type": "array",
-            "title": "Supply/Starting Materials",
-            "uniqueItems": true,
-            "items": {
-                "type": "object",
-                "title": "Supply/Starting Material",
-                "properties": {
-                    "@type": {
-                        "type": "array",
-                        "default": [
-                            "HowToSupply",
-                            "mat:Material"
-                        ]
-                    },
-                    "identifier": {
-                        "type": "string",
-                        "cordra": {"type": {"handleReference": {"types": ["Material"]}}}
-                    },
-                    "name": {
-                        "type": "string",
-                        "title": "Name"
-                    },
-                    "requiredQuantity": {"$ref": "QuantitativeValue.json#/definitions/QuantitativeValue"}
-                }
-            }
-        },
-        "isSupplyFor": {
-            "type": "array",
-            "title": "This Material is a Supply/Starting Material for this Process",
-            "uniqueItems": true,
-            "items": {
-                "title": "Process",
-                "type": "string",
-                "cordra": {"type": {"handleReference": {"types": [
-                    "ProcessHistory",
-                    "ProcessProtocol"
-                ]}}}
-            }
+          }
         }
+      }
+    },
+    "isSupplyFor": {
+      "title": "This Material is a Supply/Starting Material for this Process",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Process",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "ProcessHistory",
+                "ProcessProtocol"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "supply": {
+      "title": "Supply/Starting Materials",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Supply/Starting Material",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "default": [
+              "HowToSupply",
+              "mat:Material"
+            ],
+            "type": "array"
+          },
+          "identifier": {
+            "type": "string",
+            "cordra": {
+              "type": {
+                "handleReference": {
+                  "types": [
+                    "Material"
+                  ]
+                }
+              }
+            }
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "requiredQuantity": {
+            "$ref": "QuantitativeValue.json#/definitions/QuantitativeValue"
+          }
+        }
+      }
+    },
+    "workExample": {
+      "title": "Resulting Materials/Data",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "title": "Resulting Material/Data",
+        "type": "string",
+        "cordra": {
+          "type": {
+            "handleReference": {
+              "types": [
+                "Material",
+                "Dataset",
+                "File",
+                "MaterialStructure",
+                "MaterialProperty",
+                "MaterialPerformance",
+                "TabularData",
+                "TabularDataPackage"
+              ]
+            }
+          }
+        }
+      }
     }
+  }
 }
